@@ -9,9 +9,6 @@ public class Payment {
 
     private final static Logger LOG = Logger.getLogger(Payment.class.getName());
 
-    private final static Object lockAccounts = new Object();
-    private final static Object unlocAccounts = new Object();
-
     public static void transferMoney(String uniqueID, Account from, Account to, int amount) throws NotEnoughMoneyAccount {
         LOG.fine(String.format("%s : Try : %d : %s -> %s ", uniqueID, amount, from.getName(), to.getName()));
 

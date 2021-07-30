@@ -16,19 +16,15 @@ public class Account {
     }
 
     public void add(long money) {
-        synchronized (moneyAccount) {
-            this.moneyAccount += money;
-        }
+        this.moneyAccount += money;
     }
 
     public boolean minus(long money) {
-        synchronized (moneyAccount) {
-            if (this.moneyAccount - money >= 0) {
-                this.moneyAccount -= money;
-                return true;
-            } else {
-                return false;
-            }
+        if (this.moneyAccount - money >= 0) {
+            this.moneyAccount -= money;
+            return true;
+        } else {
+            return false;
         }
     }
 
