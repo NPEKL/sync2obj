@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "me.champeau.jmh" version "0.6.5"
     id 'application'
 }
 
@@ -11,6 +12,9 @@ repositories {
 }
 
 dependencies {
+    jmh 'org.openjdk.jmh:jmh-core:1.19'
+    jmh 'org.openjdk.jmh:jmh-generator-annprocess:1.19'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }

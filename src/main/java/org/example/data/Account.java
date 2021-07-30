@@ -1,5 +1,6 @@
 package org.example.data;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -7,11 +8,11 @@ public class Account {
 
     private volatile Long moneyAccount;
     private final String name;
-    private final Lock lock;
+    private final AtomicBoolean lock;
 
     public Account(String name, long startMoney) {
         this.name = name;
-        this.lock = new ReentrantLock(false);
+        this.lock = new AtomicBoolean(false);
         this.moneyAccount = startMoney;
     }
 
@@ -29,12 +30,16 @@ public class Account {
     }
 
     public void lock() {
-        lock.lock();
+        lock.setOpaque(true);
     }
 
     public void unlock() {
-        lock.unlock();
+        lock.setOpaque(false);
     }
+
+    public boolean isLock() {
+        return lock.getOpaque();
+    };
 
     public String getName() {
         return name;
